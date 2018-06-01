@@ -1,12 +1,9 @@
 package example.com.recycleviewdemo;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.Toast;
 
@@ -16,7 +13,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import example.com.recycleviewdemo.adapter.MyAdapter;
 
-public class MainActivity extends AppCompatActivity {
+/**
+ * Created by wangzl on 2018/5/28.
+ */
+
+public class SecondActivity extends AppCompatActivity {
+
     @BindView(R.id.recycler_view)
     RecyclerView mRecycleView;
     private LinearLayoutManager mLayoutManager;
@@ -64,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         mRecycleView.addOnItemTouchListener(new RecyclerViewClickListener(this, new RecyclerViewClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Toast.makeText(MainActivity.this,"点击了" +position,Toast.LENGTH_SHORT).show();
+                Toast.makeText(SecondActivity.this,"点击了" +position,Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -73,6 +75,4 @@ public class MainActivity extends AppCompatActivity {
             }
         }));
     }
-
-
 }

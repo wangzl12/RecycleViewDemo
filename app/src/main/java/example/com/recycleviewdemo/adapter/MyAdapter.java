@@ -29,7 +29,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     //创建新view
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout,null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout, null);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
@@ -37,32 +37,36 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     //将数据与界面进行绑定
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mTextView.setText(datas.get(position));
+        if (datas.size() != 0) {
 
-        if (mOnItemClickListener != null) {
-            holder.mImageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int position1 = holder.getLayoutPosition();
-                    mOnItemClickListener.onItemClick(holder.itemView, position1);
-                }
-            });
 
-            holder.mImageView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View view) {
-                    int position1 = holder.getLayoutPosition();
-                    mOnItemClickListener.onItemLongClick(holder.itemView, position1);
-                    return false;
-                }
-            });
+            holder.mTextView.setText(datas.get(position % datas.size()));
+
+            if (mOnItemClickListener != null) {
+                holder.mImageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        int position1 = holder.getLayoutPosition();
+                        mOnItemClickListener.onItemClick(holder.itemView, position1);
+                    }
+                });
+
+                holder.mImageView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View view) {
+                        int position1 = holder.getLayoutPosition();
+                        mOnItemClickListener.onItemLongClick(holder.itemView, position1);
+                        return false;
+                    }
+                });
+            }
         }
 
     }
 
     @Override
     public int getItemCount() {
-        return datas.size();
+        return Integer.MAX_VALUE;
     }
 
 
@@ -76,14 +80,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-
-            int width = ((Activity) mImageView.getContext()).getWindowManager().getDefaultDisplay().getWidth();
-            ViewGroup.LayoutParams params = mImageView.getLayoutParams();
-            //设置图片的相对于屏幕的宽高比
-            params.width = width/2;
-            params.height =  (int) (200 + Math.random() * 400) ;
-            mImageView.setLayoutParams(params);
-
         }
     }
 

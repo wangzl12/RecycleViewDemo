@@ -9,6 +9,8 @@
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingRight="15dp"
+        android:paddingLeft="15dp"
         android:layout_centerVertical="true"
         android:scrollbars="none" />
 
