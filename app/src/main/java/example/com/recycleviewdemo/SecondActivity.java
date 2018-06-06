@@ -52,6 +52,8 @@ public class SecondActivity extends AppCompatActivity {
         myAdapter = new MyAdapter(mData);
         mRecycleView.setAdapter(myAdapter);
 
+        
+
 //        myAdapter.setOnItemClickListener(new MyAdapter.OnItemClickListener() {
 //            @Override
 //            public void onItemClick(View view, int position) {
